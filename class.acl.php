@@ -2,12 +2,7 @@
 
 class ACL
 {
-    private $actions = array(
-        'read', // Replace these sample permissions real ones
-        'write',
-        'publish',
-        'delete'
-    );
+    private $actions;
     private $perm;
     private $eval = 0;
 
@@ -18,8 +13,9 @@ class ACL
      *   is optional and not needed when only using the class to generate a new
      *   permissions code.
      */
-    public function __construct($perm = 0)
+    public function __construct($actions, $perm = 0)
     {
+        $this->actions = $actions;
         $this->perm = intval($perm);
     }
 

@@ -4,8 +4,16 @@
 /* Include the class */
 require_once('class.acl.php');
 
+/* List possible actions */
+$actions = array(
+    'read',
+    'write',
+    'publish',
+    'delete'
+);
+
 /* Create a new object to generate a permissions set */
-$permissionGenerator = new ACL();
+$permissionGenerator = new ACL($actions);
 
 /* Add the permissions you want */
 $permissionGenerator->addPermission('read');
@@ -22,7 +30,7 @@ $code = $permissionGenerator->evaluate();
 
 
 /* Create an object and pass it a permissions code to test against */
-$ACL = new ACL($code);
+$ACL = new ACL($actions, $code);
 
 /* Get an array of possible actions you can test for */
 $actions = $ACL->getActions();
